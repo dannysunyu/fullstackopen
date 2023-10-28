@@ -15,7 +15,7 @@ const App = () => {
         exercises: 14
       }
     ]
-  }
+  };
 
   return (
     <div>
@@ -26,9 +26,9 @@ const App = () => {
   )
 }
 
-const Header = (props) => (
+const Header = (props) => {
   <h1>{props.course}</h1>
-);
+};
 
 const Content = (props) => {
   return (
