@@ -42,16 +42,12 @@ const App = () => {
       <button onClick={voteAnecdote}>vote</button>
       <button onClick={generateRandomAnecdote}>next anecdote</button>
 
-      {mostVotes === 0 ? null :
-        (<>
-          <h2>Anecdote with most votes</h2>
-          <div>{anecdotes[mostVotesIndex]}</div>
-          <div>
-            has {mostVotes} votes
-          </div>
-        </>)
-      }
 
+      <h2>Anecdote with most votes</h2>
+      <div>{anecdotes[mostVotesIndex]}</div>
+      <div>
+        has {mostVotes} votes
+      </div>
     </>
   )
 };
