@@ -45,6 +45,16 @@ const App = () => {
     setFilter(event.target.value);
   }
 
+  const handleDelete = (id, name) => {
+    if (confirm(`Delete ${name} ?`)) {
+      personService
+        .remove(id)
+        .then(_ => {
+          setPersons(persons.filter(person => person.id !== id));
+        });
+    }
+  }
+
   useEffect(() => {
     personService
       .getAll()
@@ -73,7 +83,10 @@ const App = () => {
         onNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons persons={filteredPersons} />
+      <Persons
+        persons={filteredPersons}
+        deletePerson={handleDelete}
+      />
     </div>
   )
 }

@@ -27,7 +27,7 @@ const update = (id, person) => {
 };
 
 const remove = (id) => {
-  return axios.delete(id);
+  return axios.delete(`${baseUrl}/${id}`);
 };
 
 export default {
