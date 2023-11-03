@@ -4,6 +4,7 @@ import personService from './services/persons';
 import Filter from './components/Filter';
 import PersonForm from './components/PersonForm';
 import Persons from './components/Persons';
+import Notification from './components/Notification';
 
 
 const App = () => {
@@ -11,6 +12,9 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [filter, setFilter] = useState('');
+
+  const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState('error');
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -28,6 +32,13 @@ const App = () => {
           setPersons(persons.concat(person));
           setNewName('');
           setNewNumber('');
+
+          setMessage(`Added ${person.name}`);
+          setMessageType('success');
+
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
         });
     } else if (foundPerson.number === newNumber) {
       alert(`${newName} is already added to phonebook`);
@@ -43,6 +54,12 @@ const App = () => {
         setPersons(persons.map(person => person.id !== id ? person : returnedPerson));
         setNewName('');
         setNewNumber('');
+
+        setMessage(`Changed ${person.name}`);
+        setMessageType('success');
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       });
   }
 
@@ -83,6 +100,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification
+        message={message}
+        type={messageType}
+      />
       <Filter
         filterValue={filter}
         onFilterChange={handleFilterChange}
