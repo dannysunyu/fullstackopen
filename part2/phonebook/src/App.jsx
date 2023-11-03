@@ -60,6 +60,16 @@ const App = () => {
         setTimeout(() => {
           setMessage(null);
         }, 5000);
+      })
+      .catch(() => {
+        setMessage(`Information of ${person.name} has already been removed from server`);
+        setMessageType('error');
+
+        setPersons(persons.filter(person => person.id !== id));
+
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       });
   }
 
@@ -79,7 +89,7 @@ const App = () => {
     if (confirm(`Delete ${name} ?`)) {
       personService
         .remove(id)
-        .then(_ => {
+        .then(() => {
           setPersons(persons.filter(person => person.id !== id));
         });
     }
