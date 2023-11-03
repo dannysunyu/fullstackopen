@@ -20,7 +20,7 @@ const create = (person) => {
 
 const update = (id, person) => {
   return axios
-    .update(`${baseUrl}/${id}`, person)
+    .put(`${baseUrl}/${id}`, person)
     .then(response => {
       return response.data;
     });
