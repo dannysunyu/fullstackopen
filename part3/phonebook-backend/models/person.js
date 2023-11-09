@@ -1,11 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Person = require('./person');
 
 const url = process.env.MONGODB_URI;
 
 console.log('connecting to', url);
 
+mongoose.set('strictQuery', false);
 mongoose.connect(url)
   .then(result => {
     console.log('connected to MongoDB');
