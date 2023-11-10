@@ -55,8 +55,13 @@ const App = () => {
 
         showSuccessNotification(`Changed ${person.name}`);
       })
-      .catch(() => {
-        showErrorNotification(`Information of ${person.name} has already been removed from server`);
+      .catch((error) => {
+        if (error.response.data) {
+          showErrorNotification(error.response.data.error);
+        } else {
+          // In the case of updating a deleted person, the front-end shows a hard-coded error.
+          showErrorNotification(`Information of ${person.name} has already been removed from server`);
+        }
 
         setPersons(persons.filter(person => person.id !== id));
       });
