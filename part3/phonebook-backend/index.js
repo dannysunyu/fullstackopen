@@ -41,7 +41,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end();
     })
     .catch(error => next(error));
@@ -99,7 +99,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+  response.status(404).send({ error: 'unknown endpoint' });
 };
 
 app.use(unknownEndpoint);
@@ -110,16 +110,16 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' });
   } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
+    return response.status(400).json({ error: error.message });
   }
 
   next(error);
-}
+};
 
 // this has to be the last loaded middleware.
 app.use(errorHandler);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`);
 });
