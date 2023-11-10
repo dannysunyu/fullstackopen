@@ -58,8 +58,8 @@ const App = () => {
       .catch((error) => {
         if (error.response.data) {
           showErrorNotification(error.response.data.error);
-        } else {
-          // In the case of updating a deleted person, the front-end shows a hard-coded error.
+        } else if (error.response.status === 204) {
+          // This branch means trying to update a person that's been deleted.
           showErrorNotification(`Information of ${person.name} has already been removed from server`);
         }
 
