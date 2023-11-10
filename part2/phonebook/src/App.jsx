@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import personService from './services/persons';
 
 import Filter from './components/Filter';
@@ -33,12 +33,10 @@ const App = () => {
           setNewName('');
           setNewNumber('');
 
-          setMessage(`Added ${person.name}`);
-          setMessageType('success');
-
-          setTimeout(() => {
-            setMessage(null);
-          }, 5000);
+          showSuccessNotification(`Added ${person.name}`);
+        })
+        .catch(error => {
+          showErrorNotification(error.response.data.error);
         });
     } else if (foundPerson.number === newNumber) {
       alert(`${newName} is already added to phonebook`);
@@ -55,21 +53,12 @@ const App = () => {
         setNewName('');
         setNewNumber('');
 
-        setMessage(`Changed ${person.name}`);
-        setMessageType('success');
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
+        showSuccessNotification(`Changed ${person.name}`);
       })
       .catch(() => {
-        setMessage(`Information of ${person.name} has already been removed from server`);
-        setMessageType('error');
+        showErrorNotification(`Information of ${person.name} has already been removed from server`);
 
         setPersons(persons.filter(person => person.id !== id));
-
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
       });
   }
 
@@ -106,6 +95,22 @@ const App = () => {
   const filteredPersons = persons.filter(person => {
     return person.name.toLowerCase().includes(filter.toLowerCase());
   });
+
+  const showSuccessNotification = (message) => {
+    setMessage(message);
+    setMessageType('success');
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
+  }
+
+  const showErrorNotification = (message) => {
+    setMessage(message);
+    setMessageType('error');
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
+  }
 
   return (
     <div>
