@@ -2,7 +2,7 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Promises, async/await part 3",
+  "title": "Promises, async/await part 5",
   "author": "JavaScript.info",
   "url": "https://javascript.info/promise-basics",
   "likes": 12
