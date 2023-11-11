@@ -10,10 +10,26 @@ const blogSchema = new mongoose.Schema({
   likes: Number
 });
 
+blogSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  }
+});
+
 const Blog = mongoose.model('Blog', blogSchema);
 
-const mongoUrl = 'mongodb://localhost/bloglist';
-mongoose.connect(mongoUrl);
+mongoose.set('strictQuery', false);
+
+const mongoUrl = 'mongodb+srv://sunnyhust2005:Db78398k@cluster0.qg2amgu.mongodb.net/bloglist?retryWrites=true&w=majority';
+mongoose.connect(mongoUrl)
+  .then(() => {
+    console.log('connected to MongoDB');
+  })
+  .catch((error) => {
+    console.log('error connecting to MongoDB:', error.message);
+  });
 
 app.use(cors());
 app.use(express.json());
