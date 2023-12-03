@@ -57,7 +57,7 @@ test('a valid blog can be added', async () => {
   expect(contents).toContainEqual(newBlog);
 });
 
-test('likes property missing from the request, defaults to 0', async () => {
+test('a blog can be added with likes defaults to 0 if likes property is missing from request', async () => {
   const newBlog = {
     title: 'Promises, async/await part 5',
     author: 'JavaScript.info',
