@@ -57,6 +57,30 @@ test('a valid blog can be added', async () => {
   expect(contents).toContainEqual(newBlog);
 });
 
+test('likes property missing from the request, defaults to 0', async () => {
+  const newBlog = {
+    title: 'Promises, async/await part 5',
+    author: 'JavaScript.info',
+    url: 'https://javascript.info/promise-basics',
+  }
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+  const blogsInDb = await helper.blogsInDb();
+  const contents = blogsInDb.map(blog => {
+    delete blog.id;
+    return blog;
+  });
+  expect(contents).toContainEqual({
+    ...newBlog,
+    likes: 0,
+  })
+});
+
+
 afterAll(async () => {
   await mongoose.connection.close();
 });
