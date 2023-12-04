@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/656d2aedd42e709d7fd49dbb
+Content-Type: application/json
+
+{
+  "title": "ABC",
+  "author": "Edsger W. Dijkstra",
+  "url": "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+  "likes": 8
+}
