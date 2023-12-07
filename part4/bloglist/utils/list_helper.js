@@ -2,11 +2,11 @@ const _ = require('lodash');
 
 const dummy = (blogs) => {
   return 1;
-}
+};
 
 const totalLikes = (blogs) => {
   return blogs.map(blog => blog.likes).reduce((runningSum, num) => runningSum + num, 0);
-}
+};
 
 const favoriteBlog = (blogs) => {
   if (blogs.length === 0) {
@@ -42,7 +42,7 @@ const mostBlogs = (blogs) => {
   return {
     author: maxBlogAuthor,
     blogs: count,
-  }
+  };
 };
 
 module.exports = {
@@ -50,4 +50,4 @@ module.exports = {
   totalLikes,
   favoriteBlog,
   mostBlogs,
-}
+};

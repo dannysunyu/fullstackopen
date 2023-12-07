@@ -1,5 +1,5 @@
 const { dummy, totalLikes, favoriteBlog, mostBlogs } = require('../utils/list_helper');
-const { initialBlogs } = require("./test_helper");
+const { initialBlogs } = require('./test_helper');
 
 const listWithOneBlog = [
   {
@@ -26,12 +26,12 @@ describe('total likes', () => {
     const blogs = [];
 
     const result = totalLikes(blogs);
-    expect(result).toBe(0)
+    expect(result).toBe(0);
   });
 
   test('when list has only one blog equals the likes of that', () => {
     const result = totalLikes(listWithOneBlog);
-    expect(result).toBe(5)
+    expect(result).toBe(5);
   });
 
   test('of a bigger list is calculated right', () => {
@@ -44,8 +44,8 @@ describe('favorite blog', () => {
   test('finds out which blog has the most likes', () => {
     const result = favoriteBlog(manyBlogs);
     expect(result).toEqual({
-      title: "Canonical string reduction",
-      author: "Edsger W. Dijkstra",
+      title: 'Canonical string reduction',
+      author: 'Edsger W. Dijkstra',
       likes: 12,
     });
   });
@@ -55,7 +55,7 @@ test('finds out which author has the most blogs', () => {
   const result = mostBlogs(manyBlogs);
 
   expect(result).toEqual({
-    author: "Robert C. Martin",
+    author: 'Robert C. Martin',
     blogs: 3,
   });
 });
