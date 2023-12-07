@@ -1,6 +1,6 @@
 const Blog = require('../models/blog');
-const { toJSON } = require("lodash/seq");
-const User = require("../models/user");
+const { toJSON } = require('lodash/seq');
+const User = require('../models/user');
 
 const initialBlogs = [
   {
@@ -49,7 +49,7 @@ const blogsInDb = async () => {
 const usersInDb = async () => {
   const users = await User.find({});
   return users.map(toJSON);
-}
+};
 
 module.exports = {
   initialBlogs,
