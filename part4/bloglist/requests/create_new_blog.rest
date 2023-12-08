@@ -1,5 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR5czIiLCJpZCI6IjY1NzFhYTIyMTg5NTZmNTI1YWM4NWIxOCIsImlhdCI6MTcwMjAwMzU0N30.FnvMoBTZh_3iJFGIJaw_ggJUkS8gBIzWrxplDTSm5-Y
 
 {
   "title": "Promises, async/await part 6",

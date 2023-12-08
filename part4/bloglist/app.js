@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const blogsRouter = require('./controllers/blogs');
 const usersRouter = require('./controllers/users');
 const { requestLogger, errorHandler, unknownEndpoint } = require('./utils/middleware');
-const loginRouter = require("./controllers/login");
+const loginRouter = require('./controllers/login');
 
 mongoose.set('strictQuery', false);
 
