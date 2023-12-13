@@ -63,3 +63,4 @@ typings/
 .idea
 
 mongo_data
+redis_data
